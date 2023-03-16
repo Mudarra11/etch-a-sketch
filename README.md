@@ -1,1 +1,1 @@
-# etch-a-sketch
+this is a project to etch a sketch from theodinproject.com

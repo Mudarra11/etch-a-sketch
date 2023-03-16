@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta charset="utf-8">
+       <title></title>
+       <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <button id="button">Choose Grid Size</button>
+        <div id="container">
+            
+        </div>
+    </body>
+    <script>
+
+        const button = document.querySelector('#button');
+        const container = document.querySelector('#container');
+
+        button.addEventListener('click', function(e) {
+          const gridSize = prompt("Choose the number of squares per side of the new grid, maximum number is 100:");
+          newGrid(gridSize);
+          colorize();
+        });
+
+        
+
+        function createGrid() {
+            for (i = 0; i < 256; i++) {
+                const square = document.createElement('div');
+                square.classList.add('squares');
+                container.appendChild(square);
+            }
+        }
+
+        createGrid();
+
+        function newGrid(gridSize) {
+            if (gridSize > 0 && gridSize <= 100) {
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                for (i = 0; i < (gridSize * gridSize); i++) {
+                    const square = document.createElement('div');
+                    square.classList.add('squares');
+                    container.appendChild(square);
+                }
+                container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+                container.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
+            } else if (gridSize < 0 || gridSize > 100) {
+                alert('Invalid number')
+            }
+        }
+
+        function colorize() {
+        const squares = document.querySelectorAll('.squares');
+        for(const square of squares) {
+        square.addEventListener('mouseover', function(e) {
+            square.classList.add('squareColor');
+        })};
+        };
+
+        colorize();
+
+    </script>
+</html>
